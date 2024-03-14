@@ -1,5 +1,5 @@
 # API-for-a-vending-machine-
-API for a vending machine, allowing users with a “seller” role to add, update or remove products, while users with a “buyer” role can deposit coins into the machine and make purchases. Your vending machine should only accept 5, 10, 20, 50 and 100 cent coins
+#API for a vending machine, allowing users with a “seller” role to add, update or remove products, while users with a “buyer” role can deposit coins into the machine and make purchases. Your vending machine should only accept 5, 10, 20, 50 and 100 cent coins
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -19,12 +19,10 @@ class User(db.Model):
     password_hash = db.Column(db.String(128))
     deposit = db.Column(db.Integer, default=0)
     role = db.Column(db.String(10), nullable=False)  # Can be either 'buyer' or 'seller'
-
     # Method to hash the password
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
-    
-    # Method to verify the password
+        # Method to verify the password
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
